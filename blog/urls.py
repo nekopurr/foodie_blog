@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
+from .views import PostListView
 
 app_name = 'blog'
 
 urlpatterns = [
     # 글 목록 조회
-    path("", views.PostListView.as_view(), name='list'),
+    path("", PostListView.as_view(), name='list'),
     
 ]

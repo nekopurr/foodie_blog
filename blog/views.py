@@ -11,7 +11,7 @@ class PostListView(View):
     def get(self, request):
         posts = Post.objects.all()
         context = {
-            "post": posts,
+            "posts": posts,
             # "title": "Blog",
         }
         return render(request, 'blog/post_list.html', context)
