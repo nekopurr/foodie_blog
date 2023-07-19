@@ -1,11 +1,22 @@
 <h1>게시판</h1>
 
-{% for post in posts %}
-  <td><a href="{% url 'blog:post_detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
-  <td>{{ post.writer }}</td>
-  <hr>
-{% empty %}
-  <p>게시물이 없습니다.</p>
-{% endfor %}
+<table>
+  <tr>
+    <th>번호</th>
+    <th>제목</th>
+    <th>작성자</th>
+  </tr>
+  {% for post in posts %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td><a href="{% url 'blog:post_detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
+      <td>{{ post.writer }}</td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="3">게시물이 없습니다.</td>
+    </tr>
+  {% endfor %}
+</table>
 
 <a href="{% url 'blog:post_write' %}" class="btn">글 작성</a>
