@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 # Create your views here.
 
@@ -47,3 +47,22 @@ class CommentCreateView(View):
             return redirect('blog:post_detail', pk=post.pk)
         except Post.DoesNotExist:
             return redirect('blog:post_list')
+
+
+class PostWriteView(View):
+    def get(self, request):
+        form = PostForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'blog/post_write.html', context)
+
+    def post(self, request):
+        form = PostForm(request.POST)
+        context = {
+            'form': form
+        }
+        if form.is_valid():
+            post = form.save()
+            return redirect('blog:post_detail', pk=post.pk)
+        return render(request, 'blog/post_write.html', context)
