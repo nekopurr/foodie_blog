@@ -74,15 +74,19 @@ class PostWriteView(View):
         return render(request, 'blog/post_write.html', context)
 
 
-class CommentCreateView(View):
+class PostDeleteView(View):
     def post(self, request, pk):
-        try:
-            post = Post.objects.get(pk=pk)
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.post = post
-                comment.save()
-            return redirect('blog:post_detail', pk=post.pk)
-        except Post.DoesNotExist:
-            return redirect('blog:post_list')
+        post = get_object_or_404(Post, pk=pk)
+        post.delete()
+        return redirect('blog:list')
+
+
+class CommentWriteView(View):
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+        return redirect('blog:post_detail', pk=post.pk)

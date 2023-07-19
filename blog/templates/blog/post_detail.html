@@ -1,8 +1,14 @@
 <h2>{{ post.title }}</h2>
+<p><strong>작성자:</strong> {{ post.writer }}</p>
 <p>{{ post.content }}</p>
 
-<hr>
+<!-- 글 삭제 -->
+<form method="post" action="{% url 'blog:post_delete' pk=post.pk %}">
+  {% csrf_token %}
+  <button type="submit" onclick="return confirm('정말로 글을 삭제하시겠습니까?')">글 삭제</button>
+</form>
 
+<!-- 댓글 -->
 <h3>댓글</h3>
 {% for comment in comments %}
     <p>{{ comment.content }}</p>
@@ -15,6 +21,7 @@
 
 <hr>
 
+<!-- 댓글 작성 -->
 <h3>댓글작성</h3>
 <form method="post" action="{% url 'blog:comment_create' pk=post.pk %}">
     {% csrf_token %}
