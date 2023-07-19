@@ -21,6 +21,8 @@ class PostDetailView(View):
     def get(self, request, pk):
         try:
             post = Post.objects.get(pk=pk)
+            comments = Comment.objects.filter(post=post)
+            comment_form = CommentForm()
             context = {
             'post': post,
             'comments': comments,

@@ -1,8 +1,8 @@
 <h1>게시판</h1>
 
 {% for post in posts %}
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
+  <td><a href="{% url 'blog:post_detail' pk=post.pk %}" class="btn">{{ post.title }}</a></td>
+  <td>{{ post.writer }}</td>
   <hr>
 {% empty %}
   <p>게시물이 없습니다.</p>

@@ -1,1 +1,23 @@
-post_detail
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+
+<hr>
+
+<h3>댓글</h3>
+{% for comment in comments %}
+    <p>{{ comment.content }}</p>
+    <p>By: {{ comment.writer }}</p>
+    <p>Posted at: {{ comment.created_at }}</p>
+    <hr>
+{% empty %}
+    <p>댓글이 없습니다.</p>
+{% endfor %}
+
+<hr>
+
+<h3>댓글작성</h3>
+<form method="post" action="{% url 'blog:comment_create' pk=post.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Submit</button>
+</form>
