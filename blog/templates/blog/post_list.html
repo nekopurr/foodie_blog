@@ -7,3 +7,5 @@
 {% empty %}
   <p>게시물이 없습니다.</p>
 {% endfor %}
+
+<a href="{% url 'blog:post_write' %}" class="btn">글 작성</a>

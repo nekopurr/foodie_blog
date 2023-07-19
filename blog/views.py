@@ -63,6 +63,8 @@ class PostWriteView(View):
             'form': form
         }
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)  # 저장을 잠시 보류하고,
+            post.writer = request.user  # 현재 로그인한 사용자를 작성자로 설정
+            post.save()  # 저장
             return redirect('blog:post_detail', pk=post.pk)
         return render(request, 'blog/post_write.html', context)
