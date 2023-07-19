@@ -1,6 +1,8 @@
-<h2>{{ post.title }}</h2>
-<p><strong>작성자:</strong> {{ post.writer }}</p>
+<h1>{{ post.title }}</h1>
+<p>{{ post.writer.username }} | {{ post.created_at }}</p>
 <p>{{ post.content }}</p>
+<p>Category: {{ post.category.name }}</p>
+
 
 <!-- 글 삭제 -->
 <form method="post" action="{% url 'blog:post_delete' pk=post.pk %}">
@@ -28,3 +30,4 @@
     {{ comment_form.as_p }}
     <button type="submit">Submit</button>
 </form>
+

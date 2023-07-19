@@ -3,12 +3,16 @@
 <form method="post" action="{% url 'blog:post_write' %}">
   {% csrf_token %}
   <div>
-    <label for="title">제목:</label>
-    <input type="text" name="title" id="title">
+    <label for="category">카테고리:</label>
+    <select name="category" id="category">
+      {% for category in categories %}
+        <option value="{{ category.pk }}">{{ category.name }}</option>
+      {% endfor %}
+    </select>
   </div>
   <div>
-    <label for="writer">작성자:</label>
-    <input type="text" name="writer" id="writer">
+    <label for="title">제목:</label>
+    <input type="text" name="title" id="title">
   </div>
   <div>
     <label for="content">내용:</label>

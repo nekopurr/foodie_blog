@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from .forms import CommentForm, PostForm
 
 # Create your views here.
@@ -25,7 +25,8 @@ class PostDetailView(View):
         context = {
             'post': post,
             'comments': comments,
-            'comment_form': comment_form
+            'comment_form': comment_form,
+            'categories': Category.objects.all(),
         }
         return render(request, 'blog/post_detail.html', context)
 
@@ -56,20 +57,24 @@ class PostEditView(View):
 class PostWriteView(View):
     def get(self, request):
         form = PostForm()
+        categories = Category.objects.all()
         context = {
-            'form': form
+            'form': form,
+            'categories': categories,
         }
         return render(request, 'blog/post_write.html', context)
 
     def post(self, request):
         form = PostForm(request.POST)
+        categories = Category.objects.all()
         context = {
-            'form': form
+            'form': form,
+            'categories': categories,
         }
         if form.is_valid():
-            post = form.save(commit=False) # 저장을 잠시 보류하고,
-            post.writer = request.user # 현재 로그인한 사용자를 작성자로 설정
-            post.save() # 저장
+            post = form.save(commit=False)
+            post.writer = request.user
+            post.save()
             return redirect('blog:post_detail', pk=post.pk)
         return render(request, 'blog/post_write.html', context)
 
