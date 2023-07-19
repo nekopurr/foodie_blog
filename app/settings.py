@@ -110,7 +110,8 @@ TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+# False로 안바꾸면 시간은 UTC로 나옴
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
