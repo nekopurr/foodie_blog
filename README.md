@@ -13,10 +13,11 @@
 3. 게시글 상세보기 (완료)
 4. 게시글 수정 (완료)
 5. 게시글 삭제 (완료)
-6. 게시글 검색
-7. 회원가입
-8. 로그인
-9. 사진 업로드
+6. 게시글 작성일 (당일이면 시간, 당일이 아닐 시 날짜)
+7. 게시글 검색
+8. 회원가입
+9. 로그인
+10. 사진 업로드
 
 ## 2. 개발 환경
 - Python - 3.9.10
@@ -84,3 +85,12 @@ foodie_blog
 ## 5. 실행 화면
 ### 5.1 메인 입장
 ![01_main](https://github.com/nekopurr/foodie_blog/assets/85627591/b165af81-b7ff-43a0-8b44-f809f1d0dd3b)
+
+### 5.2 글 쓰기
+![02_write](https://github.com/nekopurr/foodie_blog/assets/85627591/0d49a0f2-5719-4a33-a393-3fee03fc3e43)
+
+### 5.3 글 수정
+![03_edit](https://github.com/nekopurr/foodie_blog/assets/85627591/91b506a8-1c2b-4618-b078-abef132be901)
+
+### 5.4 글 삭제
+![04_delete](https://github.com/nekopurr/foodie_blog/assets/85627591/41d4645e-25fd-4247-98df-23b18c9fddaf)
