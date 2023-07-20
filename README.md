@@ -80,3 +80,7 @@ foodie_blog
 
 ## 4. DataBase 모델링
 ![image](https://github.com/nekopurr/foodie_blog/assets/85627591/0e9a829b-abac-4aa8-8a6e-93b7f9f18457)
+
+## 5. 실행 화면
+### 5.1 메인 입장
+![01_main](https://github.com/nekopurr/foodie_blog/assets/85627591/b165af81-b7ff-43a0-8b44-f809f1d0dd3b)
