@@ -2,94 +2,102 @@
 {% load static %}
 
 {% block content %}
-  <div class="main">
-    <h2 class="main-title">게시판</h2>
+<div class="main">
+  <h2 class="main-title">게시판</h2>
 
-    <div class="board-top">
-      <p class="main-desc"><strong>{{ posts|length }}</strong>개의 게시글이 있습니다.</p>
+  <div class="board-top">
+    <p class="main-desc"><strong>{{ posts|length }}</strong>개의 게시글이 있습니다.</p>
 
-      <div>
-        <label for="category">카테고리</label>
-        <select id="category">
-          <option value="">전체</option>
-          {% for category in category_list %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-          {% endfor %}
-        </select>
-        <form class="search-form">
-          <input id="search" type="search" placeholder="검색어를 입력해주세요">
-          <button type="submit">
-            <img src="{% static 'img/icon-search.png' %}" alt="검색">
-          </button>
-        </form>
-
-        <label for="sort">정렬</label>
-        <select id="sort">
-          <option>조회순</option>
-          <option>최신순</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- 게시판 리스트 -->
-    <table class="table list">
-      <colgroup>
-        <col style="width: 80px">
-        <col style="width: 120px">
-        <col>
-        <col style="width: 100px">
-        <col style="width: 120px">
-        <col style="width: 100px">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>카테고리</th>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>조회수</th>
-          <th>작성일</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for post in posts %}
-          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ post.category.name }}</td>
-            <td><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></td>
-            <td>{{ post.writer }}</td>
-          </tr>
-        {% empty %}
-          <tr>
-            <td colspan="4">게시물이 없습니다.</td>
-          </tr>
+    <div>
+      <label for="category">카테고리</label>
+      <select id="category">
+        <option value="">전체</option>
+        {% for category in category_list %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
         {% endfor %}
-      </tbody>
-    </table>
-    <!-- //게시판 리스트 -->
+      </select>
+      <form class="search-form">
+        <input id="search" type="search" placeholder="검색어를 입력해주세요">
+        <button type="submit">
+          <img src="{% static 'img/icon-search.png' %}" alt="검색">
+        </button>
+      </form>
 
-    <div class="board-bottom">
-      <!-- 페이지 -->
-      <div class="pagination">
-        <a href="#"><img src="{% static 'img/first.png' %}" alt="첫번째 페이지"></a>
-        <a href="#"><img src="{% static 'img/prev.png' %}" alt="이전 페이지"></a>
-        <a href="#" class="num active">1</a>
-        <a href="#" class="num">2</a>
-        <a href="#" class="num">3</a>
-        <a href="#" class="num">4</a>
-        <a href="#" class="num">5</a>
-        <a href="#"><img src="{% static 'img/next.png' %}" alt="첫번째 페이지"></a>
-        <a href="#"><img src="{% static 'img/last.png' %}" alt="이전 페이지"></a>
-      </div>
-      <!-- //페이지 -->
-      <div class="btn-group">
-        <button class="btn">선택삭제</button>
-        <a href="{% url 'blog:post_write' %}" class="btn">글쓰기</a>
-      </div>
+      <label for="sort">정렬</label>
+      <select id="sort">
+        <option>조회순</option>
+        <option>최신순</option>
+      </select>
     </div>
   </div>
 
-  <!-- footer -->
-  <p class="footer">Copyright 2023. Chilli All rights reserved.</p>
-  <!-- //footer -->
+  <!-- 게시판 리스트 -->
+  <table class="table list">
+    <colgroup>
+      <col style="width: 80px">
+      <col style="width: 120px">
+      <col>
+      <col style="width: 100px">
+      <col style="width: 120px">
+      <col style="width: 100px">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>카테고리</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>작성일</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ post.category.name }}</td>
+        <td><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></td>
+        <td>{{ post.writer }}</td>
+        <td></td>
+        <td> 
+          {% if post.created_at|date:"Y-m-d" == now|date:"Y-m-d" %}
+            {{ post.created_at|date:"H:i" }} <!-- 당일 작성된 글은 시간만 출력 -->
+          {% else %}
+            {{ post.created_at|date:"m월 d일" }} <!-- 하루 이상 지난 글은 월과 일을 출력 -->
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">게시물이 없습니다.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!-- //게시판 리스트 -->
+
+  <div class="board-bottom">
+    <!-- 페이지 -->
+    <div class="pagination">
+      <a href="#"><img src="{% static 'img/first.png' %}" alt="첫번째 페이지"></a>
+      <a href="#"><img src="{% static 'img/prev.png' %}" alt="이전 페이지"></a>
+      <a href="#" class="num active">1</a>
+      <a href="#" class="num">2</a>
+      <a href="#" class="num">3</a>
+      <a href="#" class="num">4</a>
+      <a href="#" class="num">5</a>
+      <a href="#"><img src="{% static 'img/next.png' %}" alt="첫번째 페이지"></a>
+      <a href="#"><img src="{% static 'img/last.png' %}" alt="이전 페이지"></a>
+    </div>
+    <!-- //페이지 -->
+    <div class="btn-group">
+      <button class="btn">선택삭제</button>
+      <a href="{% url 'blog:post_write' %}" class="btn">글쓰기</a>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<p class="footer">Copyright 2023. Chilli All rights reserved.</p>
+<!-- //footer -->
 {% endblock %}
