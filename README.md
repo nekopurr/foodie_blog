@@ -24,13 +24,6 @@
 - sqlite3 - 3.35.5
 
 ## 3. 구조
-
-
-
-## 4. DataBase 모델링
-![image](https://github.com/nekopurr/foodie_blog/assets/85627591/0e9a829b-abac-4aa8-8a6e-93b7f9f18457)
-
-
 ```
 foodie_blog
 ├─ .gitignore
@@ -84,3 +77,6 @@ foodie_blog
    ├─ base.html
    └─ index.html
 ```
+
+## 4. DataBase 모델링
+![image](https://github.com/nekopurr/foodie_blog/assets/85627591/0e9a829b-abac-4aa8-8a6e-93b7f9f18457)
