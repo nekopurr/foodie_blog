@@ -10,9 +10,10 @@ class PostListView(View):
 
     def get(self, request):
         posts = Post.objects.all()
+        category_list = Category.objects.all()
         context = {
             "posts": posts,
-            # "title": "Blog",
+            "category_list": category_list
         }
         return render(request, 'blog/post_list.html', context)
 

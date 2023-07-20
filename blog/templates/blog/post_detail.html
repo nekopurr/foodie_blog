@@ -1,7 +1,10 @@
-<h1>{{ post.title }}</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>[{{ post.category.name }}] {{ post.title }}</h1>
 <p>{{ post.writer.username }} | {{ post.created_at }}</p>
 <p>{{ post.content }}</p>
-<p>Category: {{ post.category.name }}</p>
 
 
 <!-- 글 삭제 -->
@@ -30,4 +33,4 @@
     {{ comment_form.as_p }}
     <button type="submit">Submit</button>
 </form>
-
+{% endblock %}

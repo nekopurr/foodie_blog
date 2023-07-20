@@ -1,0 +1,35 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %} {{ title }} {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'common.css' %}">
+  <link rel="stylesheet" href="{% static 'table.css' %}">
+  <link rel="stylesheet" href="{% static 'list.css' %}">
+  <link rel="stylesheet" href="{% static 'view.css' %}">
+  <link rel="stylesheet" href="{% static 'write.css' %}">
+</head>
+
+<body>
+  <div class="header">
+    <h1><a href="{% url 'blog:list' %}">블로그</a></h1>
+    <div class="header-click">
+      <!-- 미구현 -->
+      <a href="login.html">로그인</a> 
+      <a href="join.html">회원가입</a>
+      <button type="button">로그아웃</button>
+      <!-- ------ -->
+    </div>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+</body>
+
+</html>
