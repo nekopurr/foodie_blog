@@ -13,7 +13,8 @@ class PostListView(View):
         category_list = Category.objects.all()
         context = {
             "posts": posts,
-            "category_list": category_list
+            "category_list": category_list,
+            "title": '게시판',
         }
         return render(request, 'blog/post_list.html', context)
 
@@ -27,6 +28,7 @@ class PostDetailView(View):
             'post': post,
             'comments': comments,
             'comment_form': comment_form,
+            'title': post.title,
             'categories': Category.objects.all(),
         }
         return render(request, 'blog/post_detail.html', context)

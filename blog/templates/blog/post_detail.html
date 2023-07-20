@@ -13,6 +13,14 @@
   <button type="submit" onclick="return confirm('정말로 글을 삭제하시겠습니까?')">글 삭제</button>
 </form>
 
+<!-- 글 수정 -->
+<form method="post" action="{% url 'blog:post_edit' pk=post.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">글 수정</button>
+  </form>
+
+
 <!-- 댓글 -->
 <h3>댓글</h3>
 {% for comment in comments %}
