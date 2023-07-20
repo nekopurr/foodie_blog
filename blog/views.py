@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.utils import timezone
 from .models import Post, Comment, Category
 from .forms import CommentForm, PostForm
 
@@ -15,6 +16,7 @@ class PostListView(View):
             "posts": posts,
             "category_list": category_list,
             "title": '게시판',
+            'now': timezone.now(),
         }
         return render(request, 'blog/post_list.html', context)
 
