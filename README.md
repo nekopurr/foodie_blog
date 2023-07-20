@@ -8,6 +8,10 @@
 ## 개발 환경
 - Python, django
 
+## DataBase 모델링
+![image](https://github.com/nekopurr/foodie_blog/assets/85627591/0e9a829b-abac-4aa8-8a6e-93b7f9f18457)
+
+
 ## 기능
 1. 메인페이지 구현 (완료)
 2. 게시글 작성 (완료)
@@ -18,3 +22,4 @@
 7. 회원가입
 8. 로그인
 9. 사진 업로드
+
