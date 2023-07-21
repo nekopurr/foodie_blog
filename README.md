@@ -94,3 +94,10 @@ foodie_blog
 
 ### 5.4 글 삭제
 ![04_delete](https://github.com/nekopurr/foodie_blog/assets/85627591/41d4645e-25fd-4247-98df-23b18c9fddaf)
+
+### 5.5 작성 시간
+    {% if post.created_at|date:"Y-m-d" == now|date:"Y-m-d" %}
+        {{ post.created_at|date:"H:i" }}
+    {% else %}
+        {{ post.created_at|date:"m월 d일" }}
+    {% endif %}
